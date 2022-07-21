@@ -1,0 +1,127 @@
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="calc.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script>
+
+    // set the dimensions and margins of the graph
+    let margin = {top: 10, right: 30, bottom: 30, left: 60},
+        width = 900 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+    
+    // append the svg object to the body of the page
+    window.onload = function () {    
+    let svg = d3.select("#calc-inner-right").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g");
+    
+      let tooltip = d3.select('body')
+                  .append('div')
+                  .attr('class', 'tooltip')
+                  .attr('id', 'tooltip')
+                  .style('opacity', 0);
+    
+    svg.append("linearGradient")                
+    .attr("id", "line-gradient")            
+    .attr("gradientUnits", "userSpaceOnUse");
+
+    //Read the data
+    d3.csv("./NSEDataCopy.csv",
+    
+      // When reading the csv, I must format variables:
+      function(d){
+        return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
+      },
+    
+      // Now I can use this dataset:
+      function(data) {
+        
+        // Add X axis --> it is a date format
+        var x = d3.scaleTime()
+          .domain(d3.extent(data, function(d) { return d.date; }))
+          .range([ margin.left, width ]);
+        
+          svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+    
+        // Add Y axis
+        var y = d3.scaleLinear()
+          .domain([0, 2000])//d3.max(data, function(d) { return d.value; })])
+          .range([ height-margin.top, 0 ]);
+
+        var maxX = x(d3.extent(data, function(d) { return d.date; })[1]);
+          
+        svg.append("g")
+          .call(d3.axisLeft(y))//.ticks(5).render();
+          .attr("transform", "translate("+ margin.left+"," + margin.top+ ")");
+        // Add the line
+        svg.append("path")
+          .datum(data)
+          //.attr("class", "line")
+          .attr("fill", "none")
+          .attr("stroke", "steelblue")
+          .attr("stroke-width", 2)
+          .attr("d", d3.line()
+            .x(function(d) { return x(d.date) })
+            .y(function(d) { return y(d.value) })
+            )
+          .attr("pointer-events", "stroke")
+          .on("mouseover", function(event){
+            console.log(event.pageY);
+            const mydata = parseInt(y(d3.event.pageY));
+            //console.log(mydata);
+            //var formatDate = d3.timeFormat("%d-%b-%Y")
+            //const date = formatDate(x.invert(d3.event.pageX));
+            //console.log(data, date);
+            let dispText = "<p>NN" ;//+ date+": "+ (mydata+d3.max(data.value))+"</p>";
+            tooltip.html(dispText)
+            .style('left', d3.event.pageX + 2 + 'px')
+            .style('top', d3.event.pageY + 5 + 'px')
+            .style("opacity",0.9);
+          })
+          .on("mouseout", function(){tooltip.style("opacity",0)});
+    
+          
+    });
+  }
+    </script>
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+    <div class="topnav">
+    <h1>
+        FIRE<i>India</i>Calc
+    </h1>
+   <ul class="nav">
+    <li><a href="#">Help</a></li>
+    <li><a href="#">More</a></li>
+    </ul>
+    </div>
+    <div class="white"> </div>
+    
+    <div class="green">
+        <div class="green-inner">
+            <h1>Welcome to FIRE Calculator</h1>
+            <p>FIRE Calculator aimed at Indian Investor - including historic NSE data</p> 
+        </div> 
+    </div>
+    <div class="calc">
+        <div class="calc-inner-left">
+            <div class="inner-space">
+                <a href="#" alt="Basic Calculator" class="button">FIRE Calculator</a>
+            </div>
+            <div class="inner-space">
+                <a href="#" class="button">Allocation Simulator</a>
+            </div>
+            <div class="inner-space">
+                <a href="#" class="button">NSE Historical Returns</a>
+            </div>
+        </div>
+        <div class='calc-inner-right' id="calc-inner-right">
+
+        </div>
+    </div>
+</body>
+</html>

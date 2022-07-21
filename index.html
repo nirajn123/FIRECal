@@ -1,0 +1,64 @@
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="calc.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+    <div class="topnav">
+    <h1>
+        FIRE<i>India</i>Calc
+    </h1>
+   <ul class="nav">
+    <li><a href="#">Help</a></li>
+    <li><a href="#">More</a></li>
+    </ul>
+    </div>
+    <div class="white"> </div>
+    
+    <div class="green">
+        <div class="green-inner">
+            <h1>Welcome to FIRE Calculator</h1>
+            <p>FIRE Calculator aimed at Indian Investor - including historic NSE data</p> 
+        </div> 
+    </div>
+    <div class="calc">
+        <div class="calc-inner-left">
+            <div class="inner-space">
+                <a href="#" alt="Basic Calculator" class="button">FIRE Calculator</a>
+            </div>
+            <div class="inner-space">
+                <a href="#" class="button">Allocation Simulator</a>
+            </div>
+            <div class="inner-space">
+                <a href="#" class="button">NSE Historical Returns</a>
+            </div>
+        </div>
+        <div class='calc-inner-right'>
+            Enter your details:
+            <form name="calculator1">
+                <label for="Age" class="field">
+                    <span>Current Age</span>
+                    <input type="text" name="name" id="name">
+                </label>
+                <label for="Expenses" class="field">
+                    <span>Expenses at FIRE (In today's money)</span>
+                    <input type="text" name="Expenses" id="Expenses">
+                </label>
+                <label for="Portfolio" class="field">
+                    <span>Portfolio</span>
+                    <input type="text" name="Portfolio" id="Portfolio">
+                </label>
+                <label for="Monthly Savings" class="field">
+                    <span>Monthly Savings</span>
+                    <input type="text" name="MSavings" id="MSavings">
+                </label>
+                <label for="Expected Returns" class="field">
+                    <span>Expected Returns</span>
+                    <input type="text" name="Returns" id="Returns">
+                </label>
+                <button class="button" name="submit" onclick="Calculate() ">Calculate!</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

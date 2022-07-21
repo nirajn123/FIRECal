@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    font-family: "Source Sans Pro", sans-serif;
+}
+.topnav {
+    padding: 0 45px;
+    background-color: #FF7043;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 60px;
+}
+
+.nav a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: #424242;
+}
+
+.nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav li {
+    margin-left: 20px;
+}
+
+.white {
+    height: 10px;
+    background-color: #FFF;
+}
+.green {
+    /* height: 40px;
+    background-color: #69F0AE;*/
+    background-color: #B9F6CA;
+    padding: 25px 45px;
+    display: flex;
+    justify-content: center;
+  }
+
+.green p {
+    font-size: 1.18rem;
+    line-height: 1.6;
+}
+
+.green-inner{
+    max-width: 760px;
+}
+
+.calc {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 10px;
+    padding: 0px;
+}
+
+
+.calc-inner-left {
+    background-color: #EAFFEB;
+    padding: 20px; 
+    align-items: center;
+}
+
+.calc-inner-right {
+    background-color: #EAFFEB;
+    padding: 30px 20px; 
+}
+
+form {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-column-gap: 1em;
+    margin-top: 20px;
+    margin-bottom: 1em;
+    row-gap: 15px;
+}
+
+Input {
+    background-color: white;
+    border: 2px solid lightgreen;
+    border-radius: 4px;
+}
+
+.field {
+    grid-column: span 2;
+    display: grid;
+    grid: inherit;
+    grid-template-columns: 12em 1fr;
+    column-gap: 5px;
+    /*grid-template-columns: inherit;
+    grid-template-columns: subgrid;*/
+}
+
+.inner-space {
+    padding: 10px 0px;
+ }
+
+.button {
+    text-decoration: none;
+    color: #000;   
+    background-color: #B9F6CA;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.18rem;
+    display: block;
+    border: none;
+
+}
+
+
+div.tooltip {
+    position: absolute;
+    padding: 10px;
+    font: 12px Arial;
+    background: rgba(255, 255, 204, 0.95);
+    box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
+    border: 0;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .line {
+    fill: url(#line-gradient);
+    stroke: url(#line-gradient);
+    stroke-width: 2px;
+    }

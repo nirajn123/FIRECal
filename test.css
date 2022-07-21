@@ -1,0 +1,29 @@
+
+.menu {
+  margin: 0;
+  padding: 0;
+  li {
+    margin: 0;
+  }
+}
+
+
+.navigation {
+    line-height: 2; /* 1 */
+    .menu {
+      a, li {
+        display: block; /* 2 */
+      }
+  
+      a {
+        text-decoration: none; /* 3 */
+        color: lightblue; /* 4 */
+        padding: 1em; /* 5 */
+      }
+  
+      li {
+        border-style: solid; /* 6 */
+        border-width: 0 0 1px;
+      }
+    }
+}
